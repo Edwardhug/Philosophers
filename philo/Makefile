@@ -6,7 +6,9 @@ CC = cc
 CFLAG = -Wall -Wextra -Werror -g3
 
 SRCS =	philo.c\
-		check_conditions.c
+		check_conditions.c\
+		init_struct.c\
+		ft_atoi.c
 
 INCLUDE = philo.h
 

@@ -1,33 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_conditions.c                                 :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgabet <lgabet@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/19 12:29:36 by lgabet            #+#    #+#             */
-/*   Updated: 2023/11/24 17:42:03 by lgabet           ###   ########.fr       */
+/*   Created: 2023/11/24 17:21:07 by lgabet            #+#    #+#             */
+/*   Updated: 2023/11/24 17:22:27 by lgabet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-int	is_no_numeric(char **av, int ac)
+int	ft_whitespace(char *str)
 {
 	int	i;
-	int	j;
 
-	i = 1;
-	while (i < ac)
-	{
-		j = 0;
-		while (av[i][j])
-		{
-			if (av[i][j] < '0' || av[i][j] > '9')
-				return (1);
-			j++;
-		}
+	i = 0;
+	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	return (i);
+}
+
+int	ft_atoi(const char *s)
+{
+	int		i;
+	int		a;
+	int		r;
+
+	i = ft_whitespace((char *)s);
+	a = 1;
+	r = 0;
+	if (s[i] == '-' || s[i] == '+')
+	{	
+		if (s[i] == '-')
+			a = a * (-1);
 		i++;
 	}
-	return (0);
+	while (s[i] >= '0' && s[i] <= '9')
+	{
+		r = (s[i] - '0') + r * 10;
+		i++;
+	}
+	r = r * a;
+	return (r);
 }
