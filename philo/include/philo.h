@@ -6,7 +6,7 @@
 /*   By: lgabet <lgabet@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 12:08:33 by lgabet            #+#    #+#             */
-/*   Updated: 2023/11/22 17:02:03 by lgabet           ###   ########.fr       */
+/*   Updated: 2023/11/24 16:06:29 by lgabet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct	s_philo
 
 typedef struct s_main
 {
+	int			number_of_philo;
 	long		time_start;
 	int			time_sleep;
 	int			time_die;
