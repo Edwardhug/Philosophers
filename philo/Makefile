@@ -8,7 +8,8 @@ CFLAG = -Wall -Wextra -Werror -g3
 SRCS =	philo.c\
 		check_conditions.c\
 		init_struct.c\
-		ft_atoi.c
+		ft_atoi.c\
+		init_threads.c
 
 INCLUDE = philo.h
 
@@ -45,7 +46,7 @@ PATH_OBJS = obj/
 all: $(NAME)
 
 $(NAME) : $(PATH_OBJS) $(OBJS) $(PATH_INCLUDE)$(INCLUDE)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -pthread
 
 
 $(OBJS)	: $(PATH_OBJS)%.o: $(PATH_SRCS)%.c $(PATH_INCLUDE)$(INCLUDE)

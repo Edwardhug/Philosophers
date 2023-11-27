@@ -1,31 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   init_threads.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgabet <lgabet@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/19 12:10:40 by lgabet            #+#    #+#             */
-/*   Updated: 2023/11/27 13:08:15 by lgabet           ###   ########.fr       */
+/*   Created: 2023/11/27 13:07:41 by lgabet            #+#    #+#             */
+/*   Updated: 2023/11/27 13:34:55 by lgabet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-void free_all(t_main *var)
+void *philo_loop()
 {
-	free(var->philo);
+	printf("new thread\n");
+	return (NULL);
 }
 
-int	main(int ac, char **av)
+void create_thread(t_main *var, int i)
 {
-	t_main	var;
+	pthread_create(&var->philo[i]->thread, NULL, &philo_loop, NULL);
+}
 
-	if ((ac != 5 && ac != 6) || is_no_numeric(av, ac))
-		return (printf("Error with parameters\n"), 1);
-	if (init_struct(&var, ac, av))
-		return (printf("Malloc error during init\n"), 1);
-	init_threads(&var);
-	free_all(&var);
-	return(0);
+void init_threads(t_main *var)
+{
+	int	i;
+
+	i = 0;
+	while (i < var->number_of_philo)
+	{
+		create_thread(var, i);
+		i++;
+	}
+	i = 0;
+	while (i < var->number_of_philo)
+	{
+		pthread_join(var->philo[i]->thread, NULL);
+		i++;
+	}
 }
