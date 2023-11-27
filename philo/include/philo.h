@@ -35,7 +35,7 @@ typedef struct s_main
 	int			time_die;
 	int			time_eat;
 	int			total_eat;
-	t_philo		**philo;
+	t_philo		*philo;
 }				t_main;
 
 int		is_no_numeric(char **av, int ac);

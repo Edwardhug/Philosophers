@@ -20,7 +20,7 @@ void *philo_loop()
 
 void create_thread(t_main *var, int i)
 {
-	pthread_create(&var->philo[i]->thread, NULL, &philo_loop, NULL);
+	pthread_create(&var->philo[i].thread, NULL, &philo_loop, NULL);
 }
 
 void init_threads(t_main *var)
@@ -36,7 +36,7 @@ void init_threads(t_main *var)
 	i = 0;
 	while (i < var->number_of_philo)
 	{
-		pthread_join(var->philo[i]->thread, NULL);
+		pthread_join(var->philo[i].thread, NULL);
 		i++;
 	}
 }
