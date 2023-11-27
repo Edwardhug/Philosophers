@@ -15,6 +15,7 @@
 void free_all(t_main *var)
 {
 	free(var->philo);
+	free(var->thread);
 }
 
 int	main(int ac, char **av)

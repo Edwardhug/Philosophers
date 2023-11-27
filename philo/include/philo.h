@@ -22,9 +22,8 @@
 typedef struct	s_philo
 {
 	int				number;
-	pthread_t		thread;
 	pthread_mutex_t *right_fork;
-	pthread_mutex_t *left_fork;
+	// pthread_mutex_t *left_fork;
 }				t_philo;
 
 typedef struct s_main
@@ -35,6 +34,7 @@ typedef struct s_main
 	int			time_die;
 	int			time_eat;
 	int			total_eat;
+	pthread_t	*thread;
 	t_philo		*philo;
 }				t_main;
 

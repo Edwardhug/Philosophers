@@ -32,9 +32,12 @@ int	init_struct(t_main *var, int ac, char **arg)
 		var->total_eat = ft_atoi(arg[5]);
 	else
 		var->total_eat = -1;
+	var->thread = malloc(sizeof(pthread_t) * var->number_of_philo);
+	if (!var->thread)
+		return (1);
 	var->philo = malloc(sizeof(t_philo) * var->number_of_philo);
 	if (!var->philo)
-		return (1);
+		return (free(var->thread), 1);
 	var->time_start = get_actual_time();
 	return (0);
 }
