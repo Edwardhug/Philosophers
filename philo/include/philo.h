@@ -6,7 +6,7 @@
 /*   By: lgabet <lgabet@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 12:08:33 by lgabet            #+#    #+#             */
-/*   Updated: 2023/11/28 17:24:20 by lgabet           ###   ########.fr       */
+/*   Updated: 2023/11/28 18:34:39 by lgabet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct	s_philo
 	int				number;
 	int				number_of_meal;
 	long long		time_start;
+	long long		time_last_meal;
 	pthread_mutex_t right_fork;
 	t_main			*var;
 	// pthread_mutex_t *left_fork;
@@ -55,5 +56,6 @@ void		init_threads(t_main *var);
 void 		*routine_philo(void *arg);
 int			philo_must_continue(t_philo *philo);
 void		check_dead_or_finished(t_main *var);
+void		print_info(t_philo *philo, char *str);
 
 #endif

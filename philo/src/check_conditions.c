@@ -6,7 +6,7 @@
 /*   By: lgabet <lgabet@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 12:29:36 by lgabet            #+#    #+#             */
-/*   Updated: 2023/11/28 18:05:08 by lgabet           ###   ########.fr       */
+/*   Updated: 2023/11/28 18:57:14 by lgabet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,24 +32,34 @@ int	are_all_full(t_main *var)
 	return (0);
 }
 
+int	have_dead_philo(t_main *var)
+{
+	int	i;
+
+	i = 0;
+	while (i < var->number_of_philo)
+	{
+		pthread_mutex_lock(&var->global_mut);
+		if ((get_actual_time() - var->philo[i].time_last_meal) >= var->time_die)
+		{
+			pthread_mutex_unlock(&var->global_mut);
+			print_info(&var->philo[i], "died");
+			return (1);
+		}
+		pthread_mutex_unlock(&var->global_mut);
+		i++;
+	}
+	return (0);
+}
+
 void	check_dead_or_finished(t_main *var)
 {
-	int		i;
 	bool	b;
 
 	b = true;
 	while (b == true)
 	{
-		i = 0;
-		while (i < var->number_of_philo)
-		{
-			pthread_mutex_lock(&var->global_mut);
-			if (var->philo[i].alive == false)
-				b = false;
-			pthread_mutex_unlock(&var->global_mut);
-			i++;
-		}
-		if (are_all_full(var))
+		if (are_all_full(var) || have_dead_philo(var))
 			b = false;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: lgabet <lgabet@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 13:07:41 by lgabet            #+#    #+#             */
-/*   Updated: 2023/11/28 18:00:11 by lgabet           ###   ########.fr       */
+/*   Updated: 2023/11/28 18:42:11 by lgabet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	create_mutex(t_main *var)
 	{
 		var->philo[i].number = i + 1;
 		var->philo[i].var = var;
-		var->philo[i].alive = true;
 		var->philo[i].number_of_meal = 0;
+		var->philo[i].time_last_meal = get_actual_time();
 		pthread_mutex_init(&var->philo->right_fork, NULL);
 		i++;
 	}
