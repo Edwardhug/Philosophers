@@ -22,7 +22,7 @@
 typedef struct	s_philo
 {
 	int				number;
-	pthread_mutex_t *right_fork;
+	pthread_mutex_t right_fork;
 	// pthread_mutex_t *left_fork;
 }				t_philo;
 

@@ -20,6 +20,8 @@ void *philo_loop()
 
 void create_thread(t_main *var, int i)
 {
+	var->philo->number = i;
+	pthread_mutex_init(&var->philo->right_fork, NULL);
 	pthread_create(&var->thread[i], NULL, &philo_loop, NULL);
 }
 
