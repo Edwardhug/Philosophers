@@ -6,7 +6,7 @@
 /*   By: lgabet <lgabet@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 12:08:33 by lgabet            #+#    #+#             */
-/*   Updated: 2023/11/28 14:04:23 by lgabet           ###   ########.fr       */
+/*   Updated: 2023/11/28 14:07:45 by lgabet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@ typedef struct s_main	t_main;
 
 typedef struct	s_philo
 {
-	bool	alive;
+	bool			alive;
 	int				number;
+	int				number_of_meal;
 	long long		time_start;
 	pthread_mutex_t right_fork;
 	t_main			*var;
