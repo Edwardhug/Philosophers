@@ -6,7 +6,7 @@
 /*   By: lgabet <lgabet@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 13:07:41 by lgabet            #+#    #+#             */
-/*   Updated: 2023/11/28 16:17:48 by lgabet           ###   ########.fr       */
+/*   Updated: 2023/11/28 17:18:42 by lgabet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,9 @@ void init_threads(t_main *var)
 	}
 	i = 0;
 	check_dead_or_finished(var);
+	pthread_mutex_lock(&var->global_mut);
+	var->finished = true;
+	pthread_mutex_unlock(&var->global_mut);
 	while (i < var->number_of_philo)
 	{
 		pthread_join(var->thread[i], NULL);

@@ -6,37 +6,64 @@
 /*   By: lgabet <lgabet@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 12:29:36 by lgabet            #+#    #+#             */
-/*   Updated: 2023/11/28 16:22:42 by lgabet           ###   ########.fr       */
+/*   Updated: 2023/11/28 17:23:59 by lgabet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-void check_dead_or_finished(t_main *var)
+int	are_all_full(t_main *var)
 {
-	// int	i;
+	int	i;
+	int	count;
 
-	// i = 0;
-	// while (i < var->number_of_philo)
-	// {
-	// 	if (var->philo[i]->number)
-	// }
+	i = 0;
+	count = 0;
+	while (i < var->number_of_philo - 1)
+	{
+		pthread_mutex_lock(&var->global_mut);
+		if (var->philo[i].number_of_meal == var->total_eat)
+			count++;
+		pthread_mutex_unlock(&var->global_mut);
+		i++;
+	}
+	if (count == var->number_of_philo)
+		return (1);
+	return (0);
+}
+
+void	check_dead_or_finished(t_main *var)
+{
+	int		i;
+	bool	b;
+
+	b = true;
+	while (b == true)
+	{
+		i = 0;
+		while (i < var->number_of_philo - 1)
+		{
+			pthread_mutex_lock(&var->global_mut);
+			if (var->philo[i].alive == false)
+				b = false;
+			pthread_mutex_unlock(&var->global_mut);
+			i++;
+		}
+		if (are_all_full(var))
+			b = false;
+	}
 }
 
 int	philo_must_continue(t_philo *philo)
 {
-	int	i;
-
-	i = 0;
-	while (i < philo->var->number_of_philo)
+	pthread_mutex_lock(&philo->var->global_mut);
+	if (philo->var->finished == false && (philo->number_of_meal != philo->var->total_eat))
 	{
-		if (philo->var->philo[i].alive == false)
-			return (0);	// may have some data race
-		i++;
+		pthread_mutex_unlock(&philo->var->global_mut);
+		return (1);
 	}
-	if (philo->number_of_meal == philo->var->total_eat)
-		return (0);
-	return (1);
+	pthread_mutex_unlock(&philo->var->global_mut);
+	return (0);
 }
 
 int	is_no_numeric(char **av, int ac)

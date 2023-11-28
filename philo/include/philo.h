@@ -6,7 +6,7 @@
 /*   By: lgabet <lgabet@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 12:08:33 by lgabet            #+#    #+#             */
-/*   Updated: 2023/11/28 16:17:21 by lgabet           ###   ########.fr       */
+/*   Updated: 2023/11/28 17:24:20 by lgabet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct s_main
 	int				time_die;
 	int				time_eat;
 	int				total_eat;
+	bool			finished;
 	pthread_mutex_t	write_mut;
 	pthread_mutex_t global_mut;
 	pthread_t		*thread;
@@ -53,6 +54,6 @@ long long 	get_actual_time();
 void		init_threads(t_main *var);
 void 		*routine_philo(void *arg);
 int			philo_must_continue(t_philo *philo);
-int			main_must_continue(t_main *var);
+void		check_dead_or_finished(t_main *var);
 
 #endif

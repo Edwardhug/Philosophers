@@ -6,7 +6,7 @@
 /*   By: lgabet <lgabet@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 17:16:49 by lgabet            #+#    #+#             */
-/*   Updated: 2023/11/28 13:51:02 by lgabet           ###   ########.fr       */
+/*   Updated: 2023/11/28 17:18:01 by lgabet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ long long	get_actual_time()
 
 int	init_struct(t_main *var, int ac, char **arg)
 {
+	var->finished = false;
 	var->number_of_philo = ft_atoi(arg[1]);
 	var->time_die = ft_atoi(arg[2]);
 	var->time_eat = ft_atoi(arg[3]);
