@@ -6,7 +6,7 @@
 /*   By: lgabet <lgabet@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 12:08:33 by lgabet            #+#    #+#             */
-/*   Updated: 2023/11/28 13:33:10 by lgabet           ###   ########.fr       */
+/*   Updated: 2023/11/28 14:04:23 by lgabet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,13 @@
 # include <pthread.h>
 # include <unistd.h>
 # include <sys/time.h>
+# include <stdbool.h>
 
 typedef struct s_main	t_main;
 
 typedef struct	s_philo
 {
+	bool	alive;
 	int				number;
 	long long		time_start;
 	pthread_mutex_t right_fork;
@@ -42,11 +44,12 @@ typedef struct s_main
 	t_philo			*philo;
 }				t_main;
 
-int		is_no_numeric(char **av, int ac);
-int		init_struct(t_main *var, int ac, char **arg);
-int		ft_atoi(const char *s);
+int			is_no_numeric(char **av, int ac);
+int			init_struct(t_main *var, int ac, char **arg);
+int			ft_atoi(const char *s);
 long long 	get_actual_time();
-void	init_threads(t_main *var);
-void 	*routine_philo(void *arg);
+void		init_threads(t_main *var);
+void 		*routine_philo(void *arg);
+int			are_all_alive(t_philo *philo);
 
 #endif

@@ -6,11 +6,25 @@
 /*   By: lgabet <lgabet@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 12:29:36 by lgabet            #+#    #+#             */
-/*   Updated: 2023/11/24 17:42:03 by lgabet           ###   ########.fr       */
+/*   Updated: 2023/11/28 14:04:33 by lgabet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
+
+int	are_all_alive(t_philo *philo)
+{
+	int	i;
+
+	i = 0;
+	while (i < philo->var->number_of_philo)
+	{
+		if (philo->var->philo[i].alive == false)
+			return (0);	// may have some data race
+		i++;
+	}
+	return (1);
+}
 
 int	is_no_numeric(char **av, int ac)
 {

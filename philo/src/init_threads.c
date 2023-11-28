@@ -6,7 +6,7 @@
 /*   By: lgabet <lgabet@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 13:07:41 by lgabet            #+#    #+#             */
-/*   Updated: 2023/11/28 12:24:29 by lgabet           ###   ########.fr       */
+/*   Updated: 2023/11/28 13:56:33 by lgabet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void create_thread(t_main *var, int i)
 {
 	var->philo[i].number = i;
 	var->philo[i].var = var;
+	var->philo[i].alive = true;
 	pthread_mutex_init(&var->philo->right_fork, NULL);
 	pthread_create(&var->thread[i], NULL, &routine_philo, (void *)&var->philo[i]);
 }
