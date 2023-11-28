@@ -9,7 +9,8 @@ SRCS =	philo.c\
 		check_conditions.c\
 		init_struct.c\
 		ft_atoi.c\
-		init_threads.c
+		init_threads.c\
+		routine_philo.c
 
 INCLUDE = philo.h
 
