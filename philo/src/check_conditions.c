@@ -6,7 +6,7 @@
 /*   By: lgabet <lgabet@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 12:29:36 by lgabet            #+#    #+#             */
-/*   Updated: 2023/11/28 17:23:59 by lgabet           ###   ########.fr       */
+/*   Updated: 2023/11/28 18:05:08 by lgabet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	are_all_full(t_main *var)
 
 	i = 0;
 	count = 0;
-	while (i < var->number_of_philo - 1)
+	while (i < var->number_of_philo)
 	{
 		pthread_mutex_lock(&var->global_mut);
 		if (var->philo[i].number_of_meal == var->total_eat)
@@ -41,7 +41,7 @@ void	check_dead_or_finished(t_main *var)
 	while (b == true)
 	{
 		i = 0;
-		while (i < var->number_of_philo - 1)
+		while (i < var->number_of_philo)
 		{
 			pthread_mutex_lock(&var->global_mut);
 			if (var->philo[i].alive == false)

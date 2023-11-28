@@ -6,7 +6,7 @@
 /*   By: lgabet <lgabet@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 17:16:49 by lgabet            #+#    #+#             */
-/*   Updated: 2023/11/28 17:18:01 by lgabet           ###   ########.fr       */
+/*   Updated: 2023/11/28 18:03:17 by lgabet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,5 @@ int	init_struct(t_main *var, int ac, char **arg)
 	var->philo = malloc(sizeof(t_philo) * var->number_of_philo);
 	if (!var->philo)
 		return (free(var->thread), 1);
-	// var->time_start = get_actual_time();
 	return (0);
 }

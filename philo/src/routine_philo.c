@@ -6,7 +6,7 @@
 /*   By: lgabet <lgabet@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 11:37:12 by lgabet            #+#    #+#             */
-/*   Updated: 2023/11/28 16:19:26 by lgabet           ###   ########.fr       */
+/*   Updated: 2023/11/28 18:07:32 by lgabet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	eating_routine(t_philo *philo)
 	print_info(philo, "is eating");
 	usleep(philo->var->time_eat);
 	pthread_mutex_unlock(&philo->right_fork);
-	if (philo->number != philo->var->number_of_philo)
+	if (philo->number != philo->var->number_of_philo - 1)
 		pthread_mutex_unlock(&philo->var->philo[philo->number + 1].right_fork);
 	else
 		pthread_mutex_unlock(&philo->var->philo[0].right_fork);
