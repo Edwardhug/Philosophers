@@ -6,7 +6,7 @@
 /*   By: lgabet <lgabet@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 11:37:12 by lgabet            #+#    #+#             */
-/*   Updated: 2023/11/28 18:56:55 by lgabet           ###   ########.fr       */
+/*   Updated: 2023/11/28 19:35:10 by lgabet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,22 +24,44 @@ void	print_info(t_philo *philo, char *str)
 	pthread_mutex_unlock(&philo->var->global_mut);
 }
 
-void	eating_routine(t_philo *philo)
+void	uneven_eating_routine(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->right_fork);
 	print_info(philo, "has taken a fork");
-	if (philo->number != philo->var->number_of_philo - 1)
-		pthread_mutex_lock(&philo->var->philo[philo->number + 1].right_fork);
+	if (philo->number != philo->var->number_of_philo)
+		pthread_mutex_lock(&philo->var->philo[philo->number].right_fork);
 	else
 		pthread_mutex_lock(&philo->var->philo[0].right_fork);
 	print_info(philo, "has taken a fork");
 	print_info(philo, "is eating");
 	usleep(philo->var->time_eat * 1000);
 	pthread_mutex_unlock(&philo->right_fork);
+	if (philo->number != philo->var->number_of_philo)
+		pthread_mutex_unlock(&philo->var->philo[philo->number].right_fork);
+	else
+		pthread_mutex_unlock(&philo->var->philo[0].right_fork);
+	pthread_mutex_lock(&philo->var->global_mut);
+	philo->number_of_meal++;
+	philo->time_last_meal = get_actual_time();
+	pthread_mutex_unlock(&philo->var->global_mut);
+}
+
+void	even_eating_routine(t_philo *philo)
+{
+	if (philo->number != philo->var->number_of_philo - 1)
+		pthread_mutex_lock(&philo->var->philo[philo->number + 1].right_fork);
+	else
+		pthread_mutex_lock(&philo->var->philo[0].right_fork);
+	print_info(philo, "has taken a fork");
+	pthread_mutex_lock(&philo->right_fork);
+	print_info(philo, "has taken a fork");
+	print_info(philo, "is eating");
+	usleep(philo->var->time_eat * 1000);
 	if (philo->number != philo->var->number_of_philo - 1)
 		pthread_mutex_unlock(&philo->var->philo[philo->number + 1].right_fork);
 	else
 		pthread_mutex_unlock(&philo->var->philo[0].right_fork);
+	pthread_mutex_unlock(&philo->right_fork);
 	pthread_mutex_lock(&philo->var->global_mut);
 	philo->number_of_meal++;
 	philo->time_last_meal = get_actual_time();
@@ -63,7 +85,10 @@ void *routine_philo(void *arg)
 	print_info(philo, "is thinking");
 	while (philo_must_continue(philo))
 	{
-		eating_routine(philo);
+		if (philo->var->number_of_philo % 2 != 0)
+			uneven_eating_routine(philo);
+		else
+			even_eating_routine(philo);
 		sleep_routine(philo);
 		print_info(philo, "is thinking");
 	}
