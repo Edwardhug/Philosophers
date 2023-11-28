@@ -6,13 +6,24 @@
 /*   By: lgabet <lgabet@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 12:29:36 by lgabet            #+#    #+#             */
-/*   Updated: 2023/11/28 14:04:33 by lgabet           ###   ########.fr       */
+/*   Updated: 2023/11/28 16:22:42 by lgabet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-int	are_all_alive(t_philo *philo)
+void check_dead_or_finished(t_main *var)
+{
+	// int	i;
+
+	// i = 0;
+	// while (i < var->number_of_philo)
+	// {
+	// 	if (var->philo[i]->number)
+	// }
+}
+
+int	philo_must_continue(t_philo *philo)
 {
 	int	i;
 
@@ -23,6 +34,8 @@ int	are_all_alive(t_philo *philo)
 			return (0);	// may have some data race
 		i++;
 	}
+	if (philo->number_of_meal == philo->var->total_eat)
+		return (0);
 	return (1);
 }
 

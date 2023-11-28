@@ -6,7 +6,7 @@
 /*   By: lgabet <lgabet@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 12:08:33 by lgabet            #+#    #+#             */
-/*   Updated: 2023/11/28 14:07:45 by lgabet           ###   ########.fr       */
+/*   Updated: 2023/11/28 16:17:21 by lgabet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_main
 	int				time_eat;
 	int				total_eat;
 	pthread_mutex_t	write_mut;
+	pthread_mutex_t global_mut;
 	pthread_t		*thread;
 	t_philo			*philo;
 }				t_main;
@@ -51,6 +52,7 @@ int			ft_atoi(const char *s);
 long long 	get_actual_time();
 void		init_threads(t_main *var);
 void 		*routine_philo(void *arg);
-int			are_all_alive(t_philo *philo);
+int			philo_must_continue(t_philo *philo);
+int			main_must_continue(t_main *var);
 
 #endif

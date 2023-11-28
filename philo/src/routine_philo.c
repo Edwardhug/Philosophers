@@ -6,7 +6,7 @@
 /*   By: lgabet <lgabet@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 11:37:12 by lgabet            #+#    #+#             */
-/*   Updated: 2023/11/28 15:26:11 by lgabet           ###   ########.fr       */
+/*   Updated: 2023/11/28 16:19:26 by lgabet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,9 @@ void	eating_routine(t_philo *philo)
 		pthread_mutex_unlock(&philo->var->philo[philo->number + 1].right_fork);
 	else
 		pthread_mutex_unlock(&philo->var->philo[0].right_fork);
+	pthread_mutex_lock(&philo->var->global_mut);
 	philo->number_of_meal++;
+	pthread_mutex_unlock(&philo->var->global_mut);
 }
 
 void	sleep_routine(t_philo *philo)
@@ -50,13 +52,11 @@ void *routine_philo(void *arg)
 
 	philo->time_start = get_actual_time();
 	print_info(philo, "is thinking");
-	while (are_all_alive(arg) && philo->number_of_meal != philo->var->total_eat)
+	while (philo_must_continue(philo))
 	{
 		eating_routine(philo);
 		sleep_routine(philo);
 		print_info(philo, "is thinking");
 	}
-	// printf("END OF A PHILO\n");
-	philo->alive = false;
 	return (0);
 }
