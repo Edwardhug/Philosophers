@@ -6,7 +6,7 @@
 /*   By: lgabet <lgabet@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 12:29:36 by lgabet            #+#    #+#             */
-/*   Updated: 2023/11/28 19:06:51 by lgabet           ###   ########.fr       */
+/*   Updated: 2023/11/29 13:33:43 by lgabet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	have_dead_philo(t_main *var)
 	while (i < var->number_of_philo)
 	{
 		pthread_mutex_lock(&var->global_mut);
-		if ((get_actual_time() - var->philo[i].time_last_meal) >= var->time_die)
+		if ((get_actual_time() - var->philo[i].time_last_meal) > var->time_die)
 		{
 			pthread_mutex_unlock(&var->global_mut);
 			print_info(&var->philo[i], "died");
