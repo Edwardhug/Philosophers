@@ -34,6 +34,9 @@ void	uneven_eating_routine(t_philo *philo)
 		pthread_mutex_lock(&philo->var->philo[0].right_fork);
 	print_info(philo, "has taken a fork");
 	print_info(philo, "is eating");
+	pthread_mutex_lock(&philo->var->global_mut);
+	philo->time_last_meal = get_actual_time();
+	pthread_mutex_unlock(&philo->var->global_mut);
 	usleep(philo->var->time_eat * 1000);
 	pthread_mutex_unlock(&philo->right_fork);
 	if (philo->number != philo->var->number_of_philo)
@@ -42,7 +45,6 @@ void	uneven_eating_routine(t_philo *philo)
 		pthread_mutex_unlock(&philo->var->philo[0].right_fork);
 	pthread_mutex_lock(&philo->var->global_mut);
 	philo->number_of_meal++;
-	philo->time_last_meal = get_actual_time();
 	pthread_mutex_unlock(&philo->var->global_mut);
 }
 
