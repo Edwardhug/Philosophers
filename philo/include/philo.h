@@ -6,7 +6,7 @@
 /*   By: lgabet <lgabet@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 12:08:33 by lgabet            #+#    #+#             */
-/*   Updated: 2023/11/28 19:27:47 by lgabet           ###   ########.fr       */
+/*   Updated: 2023/12/01 14:43:44 by lgabet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ typedef struct	s_philo
 	long long		time_last_meal;
 	pthread_mutex_t right_fork;
 	t_main			*var;
-	// pthread_mutex_t *left_fork;
 }				t_philo;
 
 typedef struct s_main
