@@ -6,7 +6,7 @@
 /*   By: lgabet <lgabet@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 12:29:36 by lgabet            #+#    #+#             */
-/*   Updated: 2023/11/29 13:33:43 by lgabet           ###   ########.fr       */
+/*   Updated: 2023/12/01 14:15:27 by lgabet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	check_dead_or_finished(t_main *var)
 	bool	b;
 
 	b = true;
-	while (b == true)
+	while (b == true && var->number_of_philo != 1)
 	{
 		if (are_all_full(var) || have_dead_philo(var))
 			b = false;
