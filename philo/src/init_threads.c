@@ -6,11 +6,27 @@
 /*   By: lgabet <lgabet@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 13:07:41 by lgabet            #+#    #+#             */
-/*   Updated: 2023/12/01 14:49:57 by lgabet           ###   ########.fr       */
+/*   Updated: 2023/12/04 09:53:04 by lgabet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
+
+void	init_fork(t_main *var)
+{
+	int i;
+
+	i = 0;
+	while (i < var->number_of_philo)
+	{
+		if (i == 0)
+			var->philo[i].left_fork = &var->fork[var->number_of_philo - 1];
+		else
+			var->philo[i].left_fork = &var->fork[i - 1];
+		var->philo[i].right_fork = &var->fork[i];
+		i++;
+	}
+}
 
 void	create_mutex(t_main *var)
 {
@@ -26,9 +42,10 @@ void	create_mutex(t_main *var)
 		var->philo[i].number_of_meal = 0;
 		var->philo[i].time_start = get_actual_time();
 		var->philo[i].time_last_meal = get_actual_time();
-		pthread_mutex_init(&var->philo[i].right_fork, NULL);
+		pthread_mutex_init(&var->fork[i], NULL);
 		i++;
 	}
+	init_fork(var);
 }
 
 void init_threads(t_main *var)

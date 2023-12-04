@@ -6,7 +6,7 @@
 /*   By: lgabet <lgabet@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 17:16:49 by lgabet            #+#    #+#             */
-/*   Updated: 2023/12/01 14:46:31 by lgabet           ###   ########.fr       */
+/*   Updated: 2023/12/04 09:47:44 by lgabet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,8 @@ int	init_struct(t_main *var, int ac, char **arg)
 	var->philo = malloc(sizeof(t_philo) * var->number_of_philo);
 	if (!var->philo)
 		return (free(var->thread), 1);
+	var->fork = malloc(sizeof(pthread_mutex_t) * var->number_of_philo);
+	if (!var->fork)
+		return (free(var->thread), free(var->philo), 1);
 	return (0);
 }
