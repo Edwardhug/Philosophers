@@ -6,7 +6,7 @@
 /*   By: lgabet <lgabet@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 11:37:12 by lgabet            #+#    #+#             */
-/*   Updated: 2023/12/04 15:17:33 by lgabet           ###   ########.fr       */
+/*   Updated: 2023/12/04 16:48:03 by lgabet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,29 +24,14 @@ void	print_info(t_philo *philo, char *str)
 	pthread_mutex_unlock(&philo->var->global_mut);
 }
 
-// void	uneven_eating_routine(t_philo *philo)
-// {
-// 	pthread_mutex_lock(&philo->right_fork);
-// 	print_info(philo, "has taken a fork");
-// 	if (philo->number != philo->var->number_of_philo)
-// 		pthread_mutex_lock(&philo->var->philo[philo->number].right_fork);
-// 	else
-// 		pthread_mutex_lock(&philo->var->philo[0].right_fork);
-// 	print_info(philo, "has taken a fork");
-// 	print_info(philo, "is eating");
-// 	pthread_mutex_lock(&philo->var->global_mut);
-// 	philo->time_last_meal = get_actual_time();
-// 	pthread_mutex_unlock(&philo->var->global_mut);
-// 	usleep(philo->var->time_eat * 1000);
-// 	pthread_mutex_unlock(&philo->right_fork);
-// 	if (philo->number != philo->var->number_of_philo)
-// 		pthread_mutex_unlock(&philo->var->philo[philo->number].right_fork);
-// 	else
-// 		pthread_mutex_unlock(&philo->var->philo[0].right_fork);
-// 	pthread_mutex_lock(&philo->var->global_mut);
-// 	philo->number_of_meal++;
-// 	pthread_mutex_unlock(&philo->var->global_mut);
-// }
+void ft_usleep(long long to_wait)
+{
+	long long time;
+
+	time = get_actual_time();
+	while ((get_actual_time()) - time < to_wait)
+		usleep(to_wait / 10);
+}
 
 void uneven_eating_routine(t_philo *philo)
 {
@@ -69,11 +54,7 @@ void uneven_eating_routine(t_philo *philo)
 	philo->number_of_meal++;
 	pthread_mutex_unlock(&philo->var->global_mut);
 	print_info(philo, "is eating");
-	usleep((philo->var->time_eat * 1000) * 80 / 100);
-	usleep((philo->var->time_eat * (5 / 100)) * 1000);
-	usleep((philo->var->time_eat * (5 / 100)) * 1000);
-	usleep((philo->var->time_eat * (5 / 100)) * 1000);
-	usleep((philo->var->time_eat * (5 / 100)) * 1000);
+	ft_usleep(philo->var->time_eat);
 	pthread_mutex_unlock(philo->left_fork);
 	pthread_mutex_unlock(philo->right_fork);
 }
@@ -81,11 +62,7 @@ void uneven_eating_routine(t_philo *philo)
 void	sleep_routine(t_philo *philo)
 {
 	print_info(philo, "is sleeping");
-	usleep((philo->var->time_sleep * 1000) * 80 / 100);
-	usleep((philo->var->time_sleep * 1000) * 5 / 100);
-	usleep((philo->var->time_sleep * 1000) * 5 / 100);
-	usleep((philo->var->time_sleep * 1000) * 5 / 100);
-	usleep((philo->var->time_sleep * 1000) * 5 / 100);
+	ft_usleep(philo->var->time_eat);
 }
 
 void *routine_philo(void *arg)
