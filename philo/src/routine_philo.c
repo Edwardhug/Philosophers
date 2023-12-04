@@ -6,7 +6,7 @@
 /*   By: lgabet <lgabet@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 11:37:12 by lgabet            #+#    #+#             */
-/*   Updated: 2023/12/04 09:59:08 by lgabet           ###   ########.fr       */
+/*   Updated: 2023/12/04 10:20:07 by lgabet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,11 @@ void uneven_eating_routine(t_philo *philo)
 	philo->number_of_meal++;
 	pthread_mutex_unlock(&philo->var->global_mut);
 	print_info(philo, "is eating");
-	usleep(philo->var->time_eat * 1000);
+	usleep((philo->var->time_eat * 1000) * 80 / 100);
+	usleep((philo->var->time_eat * (5 / 100)) * 1000);
+	usleep((philo->var->time_eat * (5 / 100)) * 1000);
+	usleep((philo->var->time_eat * (5 / 100)) * 1000);
+	usleep((philo->var->time_eat * (5 / 100)) * 1000);
 	pthread_mutex_unlock(philo->left_fork);
 	pthread_mutex_unlock(philo->right_fork);
 }
@@ -77,7 +81,11 @@ void uneven_eating_routine(t_philo *philo)
 void	sleep_routine(t_philo *philo)
 {
 	print_info(philo, "is sleeping");
-	usleep(philo->var->time_sleep * 1000);
+	usleep((philo->var->time_eat * 1000) * 80 / 100);
+	usleep((philo->var->time_eat * (5 / 100)) * 1000);
+	usleep((philo->var->time_eat * (5 / 100)) * 1000);
+	usleep((philo->var->time_eat * (5 / 100)) * 1000);
+	usleep((philo->var->time_eat * (5 / 100)) * 1000);
 }
 
 void *routine_philo(void *arg)
