@@ -6,7 +6,7 @@
 /*   By: lgabet <lgabet@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 11:37:12 by lgabet            #+#    #+#             */
-/*   Updated: 2023/12/04 10:20:07 by lgabet           ###   ########.fr       */
+/*   Updated: 2023/12/04 12:37:30 by lgabet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,11 @@ void uneven_eating_routine(t_philo *philo)
 void	sleep_routine(t_philo *philo)
 {
 	print_info(philo, "is sleeping");
-	usleep((philo->var->time_eat * 1000) * 80 / 100);
-	usleep((philo->var->time_eat * (5 / 100)) * 1000);
-	usleep((philo->var->time_eat * (5 / 100)) * 1000);
-	usleep((philo->var->time_eat * (5 / 100)) * 1000);
-	usleep((philo->var->time_eat * (5 / 100)) * 1000);
+	usleep((philo->var->time_sleep * 1000) * 80 / 100);
+	usleep((philo->var->time_sleep * (5 / 100)) * 1000);
+	usleep((philo->var->time_sleep * (5 / 100)) * 1000);
+	usleep((philo->var->time_sleep * (5 / 100)) * 1000);
+	usleep((philo->var->time_sleep * (5 / 100)) * 1000);
 }
 
 void *routine_philo(void *arg)
