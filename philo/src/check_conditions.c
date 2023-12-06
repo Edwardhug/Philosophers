@@ -6,7 +6,7 @@
 /*   By: lgabet <lgabet@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 12:29:36 by lgabet            #+#    #+#             */
-/*   Updated: 2023/12/01 14:37:50 by lgabet           ###   ########.fr       */
+/*   Updated: 2023/12/06 21:16:57 by lgabet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,8 @@ void	check_dead_or_finished(t_main *var)
 int	philo_must_continue(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->var->global_mut);
-	if (philo->var->finished == false && (philo->number_of_meal != philo->var->total_eat))
+	if (philo->var->finished == false
+		&& (philo->number_of_meal != philo->var->total_eat))
 	{
 		pthread_mutex_unlock(&philo->var->global_mut);
 		return (1);

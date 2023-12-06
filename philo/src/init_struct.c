@@ -6,13 +6,13 @@
 /*   By: lgabet <lgabet@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 17:16:49 by lgabet            #+#    #+#             */
-/*   Updated: 2023/12/04 09:47:44 by lgabet           ###   ########.fr       */
+/*   Updated: 2023/12/06 21:19:53 by lgabet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-long long	get_actual_time()
+long long	get_actual_time(void)
 {
 	struct timeval	time;
 	long long		ms_time;
@@ -29,7 +29,7 @@ int	init_struct(t_main *var, int ac, char **arg)
 	var->time_die = ft_atoi(arg[2]);
 	var->time_eat = ft_atoi(arg[3]);
 	var->time_sleep = ft_atoi(arg[4]);
-	if (ac ==  6)
+	if (ac == 6)
 		var->total_eat = ft_atoi(arg[5]);
 	else
 		var->total_eat = -1;

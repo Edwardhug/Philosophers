@@ -6,13 +6,13 @@
 /*   By: lgabet <lgabet@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 12:10:40 by lgabet            #+#    #+#             */
-/*   Updated: 2023/12/04 10:01:20 by lgabet           ###   ########.fr       */
+/*   Updated: 2023/12/06 21:10:09 by lgabet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-void free_all(t_main *var)
+void	free_all(t_main *var)
 {
 	int	i;
 
@@ -39,5 +39,5 @@ int	main(int ac, char **av)
 		return (printf("Malloc error during init\n"), 1);
 	init_threads(&var);
 	free_all(&var);
-	return(0);
+	return (0);
 }
