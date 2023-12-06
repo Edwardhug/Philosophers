@@ -6,7 +6,7 @@
 /*   By: lgabet <lgabet@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 13:07:41 by lgabet            #+#    #+#             */
-/*   Updated: 2023/12/06 21:17:40 by lgabet           ###   ########.fr       */
+/*   Updated: 2023/12/06 21:28:45 by lgabet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	create_mutex(t_main *var)
 	init_fork(var);
 }
 
-void	init_threads(t_main *var)
+int	init_threads(t_main *var)
 {
 	int	i;
 
@@ -56,8 +56,9 @@ void	init_threads(t_main *var)
 	create_mutex(var);
 	while (i < var->number_of_philo)
 	{
-		pthread_create(&var->thread[i], NULL,
-			&routine_philo, (void *)&var->philo[i]);
+		if (pthread_create(&var->thread[i], NULL,
+				&routine_philo, (void *)&var->philo[i]) != 0)
+			return (printf("Error pthread_create\n"), 0);
 		i++;
 	}
 	i = 0;
@@ -67,7 +68,9 @@ void	init_threads(t_main *var)
 	pthread_mutex_unlock(&var->global_mut);
 	while (i < var->number_of_philo)
 	{
-		pthread_join(var->thread[i], NULL);
+		if (pthread_join(var->thread[i], NULL) != 0)
+			return (printf("Error pthread_join\n"), 0);
 		i++;
 	}
+	return (1);
 }

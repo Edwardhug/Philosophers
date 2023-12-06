@@ -6,7 +6,7 @@
 /*   By: lgabet <lgabet@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 12:08:33 by lgabet            #+#    #+#             */
-/*   Updated: 2023/12/06 21:21:31 by lgabet           ###   ########.fr       */
+/*   Updated: 2023/12/06 21:28:21 by lgabet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int			is_no_numeric(char **av, int ac);
 int			init_struct(t_main *var, int ac, char **arg);
 int			ft_atoi(const char *s);
 long long	get_actual_time(void);
-void		init_threads(t_main *var);
+int			init_threads(t_main *var);
 void		*routine_philo(void *arg);
 int			philo_must_continue(t_philo *philo);
 void		check_dead_or_finished(t_main *var);
