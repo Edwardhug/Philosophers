@@ -6,7 +6,7 @@
 /*   By: lgabet <lgabet@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 11:37:12 by lgabet            #+#    #+#             */
-/*   Updated: 2024/02/05 12:11:01 by lgabet           ###   ########.fr       */
+/*   Updated: 2024/02/05 15:03:36 by lgabet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,7 @@ void	*routine_philo(void *arg)
 		sleep_routine(philo);
 		print_info(philo, "is thinking");
 	}
+	if (philo->var->number_of_philo == 1)
+		only_one_philo(philo);
 	return (0);
 }
