@@ -6,7 +6,7 @@
 /*   By: lgabet <lgabet@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 12:10:40 by lgabet            #+#    #+#             */
-/*   Updated: 2024/02/05 16:20:33 by lgabet           ###   ########.fr       */
+/*   Updated: 2024/02/05 16:23:31 by lgabet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	free_all(t_main *var)
 
 void	only_one_philo(t_philo *philo)
 {
-	printf("0 1 is thinking\n");
 	pthread_mutex_lock(philo->right_fork);
 	printf("0 1 has taken a fork\n");
 	usleep(philo->var->time_die * 1000);
