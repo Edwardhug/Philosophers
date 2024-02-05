@@ -27,7 +27,7 @@ PATH_OBJS = obj/
 all: $(NAME)
 
 $(NAME) : $(PATH_OBJS) $(OBJS) $(PATH_INCLUDE)$(INCLUDE)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -pthread
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -pthread -ltsan
 
 
 $(OBJS)	: $(PATH_OBJS)%.o: $(PATH_SRCS)%.c $(PATH_INCLUDE)$(INCLUDE)

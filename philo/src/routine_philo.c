@@ -6,7 +6,7 @@
 /*   By: lgabet <lgabet@student.42lyon.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 11:37:12 by lgabet            #+#    #+#             */
-/*   Updated: 2024/02/05 10:32:36 by lgabet           ###   ########.fr       */
+/*   Updated: 2024/02/05 12:11:01 by lgabet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,15 @@ void	eating_routine(t_philo *philo)
 	if (philo->number % 2 == 1)
 	{
 		pthread_mutex_lock(philo->left_fork);
-		print_info(philo, "has taken a fork");
 		pthread_mutex_lock(philo->right_fork);
+		print_info(philo, "has taken a fork");
 		print_info(philo, "has taken a fork");
 	}
 	else
 	{
 		pthread_mutex_lock(philo->right_fork);
-		print_info(philo, "has taken a fork");
 		pthread_mutex_lock(philo->left_fork);
+		print_info(philo, "has taken a fork");
 		print_info(philo, "has taken a fork");
 	}
 	pthread_mutex_lock(&philo->var->global_mut);
