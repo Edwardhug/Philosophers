@@ -3,9 +3,9 @@ NAME = philo
 
 CC = cc
 
-CFLAG = -Wall -Wextra -Werror -g3 -fsanitize=thread
+# CFLAG = -Wall -Wextra -Werror -g3 -fsanitize=thread
 
-# CFLAG = -Wall -Wextra -Werror -g3
+CFLAG = -Wall -Wextra -Werror
 
 SRCS =	philo.c\
 		check_conditions.c\
